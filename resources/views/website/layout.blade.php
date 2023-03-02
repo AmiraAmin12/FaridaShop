@@ -11,7 +11,7 @@
 		<link rel="shortcut icon" href="assets/images/logo/favourite_icon_01.png">
 
 		<!-- fraimwork - css include -->
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
 
 		<!-- icon - css include -->
 		<link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
