@@ -91,7 +91,7 @@
 
 		<!-- animation - jquery include -->
 		<script src="{{asset('assets/js/parallaxie.js')}}"></script>
-		<script src="{{ashset('assets/js/wow.min.js')}}"></script>
+		<script src="{{asset('assets/js/wow.min.js')}}"></script>
 
 		<!-- nice select - jquery include -->
 		<script src="{{asset('assets/js/nice-select.min.js')}}"></script>
