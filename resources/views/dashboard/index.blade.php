@@ -1,5 +1,7 @@
 @extends('dashboard.layout')
-
+@section('title')
+Dashboard
+@endsection()
 @section('content')
 
 <div class="container-fluid">
