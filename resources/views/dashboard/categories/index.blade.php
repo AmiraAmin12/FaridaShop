@@ -33,13 +33,15 @@ Categories
                                     </thead>
                                   
                                     <tbody>
+                                        @foreach($cats as $category)
+
                                         <tr>
-                                            <td>computers  </td>
+                                            <td>{{$category->name}}  </td>
                                             <td>
-                                                <img src="{{asset('assets\images\category\electronic\img_01.png')}}" alt="">
+                                                <img src="{{$category->photo}}" >
                                             </td>
                                             <td>
-                                                <i class="fa fa-laptop"></i>
+                                                <i class="fa fa-{{$category->icon}}"></i>
                                             </td>
                                             <td>
                                                <a href="" class="btn btn-warning">
@@ -50,9 +52,12 @@ Categories
                                                </a> 
                                             </td>
                                         </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>
+                                {{ $cats->links()}}
+
                             </div>
                         </div>
                     </div>
