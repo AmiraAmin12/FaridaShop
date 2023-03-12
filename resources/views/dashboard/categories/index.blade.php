@@ -33,12 +33,13 @@ Categories
                                     </thead>
                                   
                                     <tbody>
+                                        @if($cats->isNotEmpty())
                                         @foreach($cats as $category)
 
                                         <tr>
                                             <td>{{$category->name}}  </td>
                                             <td>
-                                                <img src="{{$category->photo}}" >
+                                                <img src="{{ asset($category->photo)}}" style="width:200px; height:200px;">
                                             </td>
                                             <td>
                                                 <i class="fa fa-{{$category->icon}}"></i>
@@ -53,6 +54,17 @@ Categories
                                             </td>
                                         </tr>
                                         @endforeach
+                                        @else
+                                        <tr col->
+                                            <td>
+                                            <div class="alert alert-danger" role="alert">
+ no data found
+</div>
+                                            </td>
+                                        </tr>
+
+                                        
+                                        @endif
 
                                     </tbody>
                                 </table>

@@ -36,11 +36,12 @@ Categories
     <label for="icon">icon</label>
     <input type="text"  name="icon" class="form-control">
   </div>
-  <div class="custom-file mb-3">
-  <label class="custom-file-label" for="validatedCustomFile"> photo</label>
-    <input type="file" class="cform-control-file"  >
-  </div>
-  
+  <div class="form-group">
+                <label>Photo</label>
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" name="photo">
+                    <label class="custom-file-label">Choose file...</label>
+                </div>
 
                         </div>
 

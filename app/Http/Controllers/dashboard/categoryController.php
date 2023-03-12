@@ -39,10 +39,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
     //   dd($request->all());
+    $fileName= now()->timestamp .'-'.$request->file('photo')->getClientOriginalName();
+    $filePath ="/uploads/" . $fileName;
+
+    $request->file('photo')->move('uploads',$fileName);
     $newCategory= new category();
     $newCategory->name= $request->name;
     $newCategory->icon= $request->icon;
-    $newCategory->photo= '$request->photo';
+    $newCategory->photo= $filePath;
     $newCategory->save();
     return back()->with('success','category added succeffly');
     }
