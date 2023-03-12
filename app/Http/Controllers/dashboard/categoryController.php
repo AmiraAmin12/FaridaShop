@@ -38,7 +38,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //   dd($request->all());
+    $newCategory= new category();
+    $newCategory->name= $request->name;
+    $newCategory->icon= $request->icon;
+    $newCategory->photo= '$request->photo';
+    $newCategory->save();
+    return back()->with('success','category added succeffly');
     }
 
     /**
