@@ -48,6 +48,8 @@ class CategoryController extends Controller
     $filePath ="/uploads/" . $fileName;
 
     $request->file('photo')->move('uploads',$fileName);
+
+    // $newCategory =category::create($category->all());
     $newCategory= new category();
     $newCategory->name= $request->name;
     $newCategory->icon= $request->icon;
