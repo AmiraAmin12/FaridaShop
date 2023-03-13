@@ -45,12 +45,14 @@ Categories
                                                 <i class="fa fa-{{$category->icon}}"></i>
                                             </td>
                                             <td>
-                                               <a href="" class="btn btn-warning">
+                                               <a href="{{url("/admin/categories/$category->id/edit")}}" class="btn btn-warning">
                                                 edit
                                                </a> 
-                                               <a href="" class="btn btn-danger">
-                                                delete
-                                               </a> 
+                                               <form action="{{url('/admin/categories/'. $category->id)}}" method="POST">
+                                               @csrf
+                                               @method('DELETE')
+                                               <button type="submit" class="btn btn-danger">Delete</button> 
+                                               </form>
                                             </td>
                                         </tr>
                                         @endforeach

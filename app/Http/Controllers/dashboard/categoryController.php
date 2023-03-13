@@ -38,6 +38,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required',
+            'icon'=>'required',
+            'photo'=>'required'      
+        ]);
     //   dd($request->all());
     $fileName= now()->timestamp .'-'.$request->file('photo')->getClientOriginalName();
     $filePath ="/uploads/" . $fileName;
@@ -70,7 +75,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category =category::find($id);
+         return view('dashboard.categories.edit',compact('category'));
     }
 
     /**
@@ -82,7 +88,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'icon'=>'required',
+            'photo'=>''      
+        ]);
+        
+        if($request->hasFile('photo')) { $fileName= now()->timestamp .'-'.$request->file('photo')->getClientOriginalName();
+    $filePath ="/uploads/" . $fileName;}
+    $category= category ::find($id);
+    
+    $category->name= $request->name;
+    $category->icon= $request->icon;
+    if($request->hasFile('photo'))
+    {$category->photo= $filePath;}
+    $category->save();
+    return back()->with('success','category edited succeffly');
     }
 
     /**
@@ -93,6 +114,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        category::destroy($id);
+        return back();
     }
 }
