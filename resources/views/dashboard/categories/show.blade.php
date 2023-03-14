@@ -36,7 +36,7 @@ Categories
 <tr>
        <th >photo</th>
       <td>
-        <img src="{{asset('$category->photo')}}" alt="" style="width:300px">
+        <img src="{{asset($category->photo)}}" alt="" style="width:300px">
        </td>
     </tr>  
   </tbody>
