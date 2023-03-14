@@ -48,13 +48,14 @@ class CategoryController extends Controller
     $filePath ="/uploads/" . $fileName;
 
     $request->file('photo')->move('uploads',$fileName);
-
-    // $newCategory =category::create($category->all());
-    $newCategory= new category();
-    $newCategory->name= $request->name;
-    $newCategory->icon= $request->icon;
-    $newCategory->photo= $filePath;
-    $newCategory->save();
+    $inputs =$request->all();
+    $inputs['photo']= $filePath;
+    $newCategory =category::create($inputs);
+    // $newCategory= new category();
+    // $newCategory->name= $request->name;
+    // $newCategory->icon= $request->icon;
+    // $newCategory->photo= $filePath;
+    // $newCategory->save();
     return back()->with('success','category added succeffly');
     }
 
@@ -64,9 +65,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(category $category)
+        {
+            return view('dashboard.categories.show',compact('category'));
     }
 
     /**
@@ -88,23 +89,24 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, category $category)
     {
         $request->validate([
             'name'=>'required',
             'icon'=>'required',
-            'photo'=>''      
         ]);
         
         if($request->hasFile('photo')) { $fileName= now()->timestamp .'-'.$request->file('photo')->getClientOriginalName();
     $filePath ="/uploads/" . $fileName;}
-    $category= category ::find($id);
     
-    $category->name= $request->name;
-    $category->icon= $request->icon;
-    if($request->hasFile('photo'))
-    {$category->photo= $filePath;}
-    $category->save();
+    $inputs = $request->all();
+
+    // $category->name= $request->name;
+    // $category->icon= $request->icon;
+    if($request->hasFile('photo')){
+        $inputs['photo']= $filePath;
+    }
+    $category->update($inputs);
     return back()->with('success','category edited succeffly');
     }
 

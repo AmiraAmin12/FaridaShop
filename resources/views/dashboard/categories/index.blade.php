@@ -45,13 +45,17 @@ Categories
                                                 <i class="fa fa-{{$category->icon}}"></i>
                                             </td>
                                             <td>
-                                               <a href="{{url("/admin/categories/$category->id/edit")}}" class="btn btn-warning">
-                                                edit
-                                               </a> 
+                                               
                                                <form action="{{url('/admin/categories/'. $category->id)}}" method="POST">
+                                               <a href="{{url("/admin/categories/$category->id/edit")}}" class="btn btn-sm btn-warning">
+                                                Edit
+                                               </a> 
+                                               <a href="{{url("/admin/categories/$category->id")}}" class="btn btn-sm btn-success">
+                                                View
+                                               </a>  
                                                @csrf
                                                @method('DELETE')
-                                               <button type="submit" class="btn btn-danger">Delete</button> 
+                                               <button type="submit" class="btn  btn-sm btn-danger">Delete</button> 
                                                </form>
                                             </td>
                                         </tr>
