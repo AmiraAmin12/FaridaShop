@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->longText('description');
             $table->float('price')->default(0);
             $table->integer('stoke')->default(0);
-            $table->bigInteger('category-id');
+            $table->unsignedBigInteger('category-id');
             $table->timestamps();
 
             $table->foreign('category-id')->references('id')->on('categories');

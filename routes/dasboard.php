@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboard\categoryController;
+use App\Http\Controllers\Dashboard\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,4 +27,5 @@ Route::get('/login', function () {
 // Route::post('/categories/update/{id}', [categoryController ::class, 'update']);
 
 // Route::post('/categories/destroy/{id}', [categoryController ::class, 'destroy']);
-Route:: resource('categories',categoryController ::class);
+Route:: resource('/categories',categoryController ::class);
+Route:: resource('products',ProductController ::class);

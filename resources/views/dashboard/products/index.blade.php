@@ -1,0 +1,82 @@
+@extends('dashboard.layout')
+@section('title')
+Products
+@endsection()
+@section('content')
+
+<div class="container-fluid">
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Products</h1>
+    <a href="{{url('/admin/products/create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+           
+        New Products</a>
+</div>
+
+                    <!-- DataTales Example -->                <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Products List</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>                                          
+                                        </tr>
+                                    </thead>
+                                  
+                                    <tbody>
+                                        @if($products->isNotEmpty())
+                                        @foreach($products as $product)
+
+                                        <tr>
+                                            <td>{{$product->name}}  </td>
+                                            <td>
+                                                <img src="{{ asset($product->photo)}}" style="width:200px; height:200px;">
+                                            </td>
+                                            <td>
+                                                <i class="fa fa-{{$product->icon}}"></i>
+                                            </td>
+                                            <td>
+                                               
+                                               <form action="{{url('/admin/products/'. $product->id)}}" method="POST">
+                                               <a href="{{url("/admin/products/$product->id/edit")}}" class="btn btn-sm btn-warning">
+                                                Edit
+                                               </a> 
+                                               <a href="{{url("/admin/products/$product->id")}}" class="btn btn-sm btn-success">
+                                                View
+                                               </a>  
+                                               @csrf
+                                               @method('DELETE')
+                                               <button type="submit" class="btn  btn-sm btn-danger">Delete</button> 
+                                               </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @else
+                                        <tr col->
+                                            <td>
+                                            <div class="alert alert-danger" role="alert">
+ no data found
+</div>
+                                            </td>
+                                        </tr>
+
+                                        
+                                        @endif
+
+                                    </tbody>
+                                </table>
+                                {{ $products->links()}}
+
+                            </div>
+                        </div>
+                    </div>
+
+
+</div>
+
+
+@endsection()

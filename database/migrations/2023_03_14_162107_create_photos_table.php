@@ -17,7 +17,7 @@ class CreatePhotosTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('path');
-            $table->bigInteger('product-id');
+            $table->unsignedBigInteger('product-id');
 
             $table->timestamps();
 

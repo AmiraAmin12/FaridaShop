@@ -23,8 +23,16 @@
 <!-- Nav Item - categories -->
 <li class="nav-item active">
     <a class="nav-link" href="{{url('/admin/categories')}}">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+    <i class="fas fa-bars"></i>
         <span>Categories</span></a>
+</li>
+<!-- Divider -->
+<hr class="sidebar-divider">
+<!-- Nav Item - categories -->
+<li class="nav-item active">
+    <a class="nav-link" href="{{url('/admin/products')}}">
+    <i class="fas fa-cart-arrow-down"></i>
+        <span>Products</span></a>
 </li>
 
 
