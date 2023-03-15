@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard.index');
+    
 });
-
 Route::get('/login', function () {
     return view('dashboard.login');
 });
@@ -28,4 +28,4 @@ Route::get('/login', function () {
 
 // Route::post('/categories/destroy/{id}', [categoryController ::class, 'destroy']);
 Route:: resource('/categories',categoryController ::class);
-Route:: resource('products',ProductController ::class);
+Route:: resource('/products',ProductController ::class);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $cats =category::get();
+        return view('dashboard.products.create',compact('cats'));
     }
 
     /**
@@ -37,8 +39,18 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
         //
+       $request->validate([
+        'name' =>'required',
+        'description' =>'required',
+        'category-id' =>'required',
+       ]);
+       $inputs= $request->all();
+       $inputs['sku']= rand(1000,9999);
+       $newProduct= Product::create($inputs);
+       return back()->with('success','The product has been saved');
     }
 
     /**
