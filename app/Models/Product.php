@@ -16,4 +16,20 @@ class Product extends Model
         'stoke',
         'category-id',
     ];
+    //events
+    protected static function booted(){
+        static::created(function($product){
+            $product-> sku= rand(1000,9999);
+            $product->save();
+
+        });
+    }
+
+    //relations
+    public function category(){
+    //    return  $this->belongsTo(category::class);
+    return $this->belongsTo('App\Models\category')->withDefault();
+
+    }
+
 }

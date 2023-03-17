@@ -12,4 +12,9 @@ class category extends Model
     protected $fillable = [
         'name','icon','photo'
     ];
+
+    // relations
+     public function category(){
+        return  $this->hasMany(Product::class);
+     }
 }

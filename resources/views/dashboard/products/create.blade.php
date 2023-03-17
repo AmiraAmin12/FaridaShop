@@ -77,6 +77,16 @@ products
     <p class="text-danger">{{$message}}</p>
     @enderror
   </div>
+  <div class="form-group">
+                <label>Photos</label>
+                <div class="custom-file mb-3">
+                    <input type="file" multiple class="custom-file-input" name="photo[]">
+                    @error('photo')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
+                    <label class="custom-file-label">Choose file...</label>
+                </div>
+
  </div>
                     <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Save</button>

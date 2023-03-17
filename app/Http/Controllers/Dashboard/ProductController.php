@@ -17,8 +17,9 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::paginate(10);
+        $products = Product::with(['category'])->paginate(10);
         return view('dashboard.products.index',compact('products'));
+        
     }
 
     /**
@@ -48,7 +49,7 @@ class ProductController extends Controller
         'category-id' =>'required',
        ]);
        $inputs= $request->all();
-       $inputs['sku']= rand(1000,9999);
+       $inputs['sku']= '';
        $newProduct= Product::create($inputs);
        return back()->with('success','The product has been saved');
     }
