@@ -54,10 +54,10 @@ class Product extends Model
         return $this->belongsTo(category::class);
     }
 
-    // public function photos()
-    // {
-    //     return $this->hasMany(Photo::class);
-    // }
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
 
     // public function cart()
     // {
