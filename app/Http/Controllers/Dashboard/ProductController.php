@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-use App\Models\category;
+use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -16,10 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
         $products = Product::with(['category'])->paginate(10);
-        return view('dashboard.products.index',compact('products'));
-        
+
+        return view('dashboard.products.index', compact('products'));
     }
 
     /**
@@ -29,8 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $cats =category::get();
-        return view('dashboard.products.create',compact('cats'));
+        $cats = Category::get();
+
+        return view('dashboard.products.create', compact('cats'));
     }
 
     /**
@@ -40,18 +41,32 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-        //
-       $request->validate([
-        'name' =>'required',
-        'description' =>'required',
-        'category-id' =>'required',
-       ]);
-       $inputs= $request->all();
-       $inputs['sku']= '';
-       $newProduct= Product::create($inputs);
-       return back()->with('success','The product has been saved');
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        $inputs = $request->all();
+        $inputs['sku'] = '';
+        $newProduct = Product::create($inputs);
+
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $filename = now()->timestamp . '_' . $photo->getClientOriginalName();
+                $filePath = "uploads/products/" . $filename;
+                $photo->move('uploads/products', $filename);
+
+                Photo::create([
+                    'name' => $filename,
+                    'path' => $filePath,
+                    'product_id' => $newProduct->id,
+                ]);
+            }
+        }
+
+        return back()->with('success', 'The prodsuct has been saved.');
     }
 
     /**
@@ -60,9 +75,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        $product->load(['category', 'photos']);
+
+        return view('dashboard.products.show', compact('product'));
     }
 
     /**
@@ -71,9 +88,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $cats = Category::get();
+
+        $product->load(['photos']);
+
+        return view('dashboard.products.edit', compact('product', 'cats'));
     }
 
     /**
@@ -83,9 +104,33 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        $inputs = $request->all();
+
+        $product->update($inputs);
+
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $filename = now()->timestamp . '_' . $photo->getClientOriginalName();
+                $filePath = "uploads/products/" . $filename;
+                $photo->move('uploads/products', $filename);
+
+                Photo::create([
+                    'name' => $filename,
+                    'path' => $filePath,
+                    'product_id' => $product->id,
+                ]);
+            }
+        }
+
+        return back()->with('success', 'The product has been updated.');
     }
 
     /**
@@ -97,5 +142,12 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delImage($id)
+    {
+        Photo::destroy($id);
+
+        return back()->with('success', 'The photo has been deleted.');
     }
 }

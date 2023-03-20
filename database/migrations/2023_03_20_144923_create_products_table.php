@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -18,12 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('sku');
             $table->string('name');
             $table->longText('description');
-            $table->float('price')->default(0);
-            $table->integer('stoke')->default(0);
-            $table->unsignedBigInteger('category-id');
+            $table->double('price')->default(0);
+            $table->bigInteger('stock')->default(0);
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
 
-            $table->foreign('category-id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -36,4 +36,4 @@ class CreateProductsTable extends Migration
     {
         Schema::dropIfExists('products');
     }
-}
+};

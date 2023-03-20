@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotosTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -17,11 +17,10 @@ class CreatePhotosTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('path');
-            $table->unsignedBigInteger('product-id');
-
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
-            $table->foreign('product-id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -34,4 +33,4 @@ class CreatePhotosTable extends Migration
     {
         Schema::dropIfExists('photos');
     }
-}
+};
