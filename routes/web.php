@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\HomepageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('website.home');
-});
+Route::get('/', HomepageController::class);
 Route::get('/category', function () {
     return view('website.category');
 });

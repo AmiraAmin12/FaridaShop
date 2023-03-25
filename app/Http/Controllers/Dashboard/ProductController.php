@@ -90,7 +90,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $cats = Category::get();
+        $cats = category::get();
 
         $product->load(['photos']);
 
