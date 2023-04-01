@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\HomepageController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomepageController::class);
-Route::get('/category', function () {
-    return view('website.category');
-});
+// Route::get('/category/{id}', function () {
+//     return view('website.category');
+// });
+Route::get('/category/{id}', [CategoryController::class, 'show']);
 Route::get('/product', function () {
     return view('website.product');
 });

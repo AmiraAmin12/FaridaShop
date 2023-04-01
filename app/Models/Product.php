@@ -59,18 +59,5 @@ class Product extends Model
         return $this->hasMany(Photo::class);
     }
 
-    // public function cart()
-    // {
-    //     return $this->belongsToMany(Cart::class);
-    // }
-
-    // public function comments()
-    // {
-    //     return $this->belongsToMany(User::class)->withPivot(['rating', 'comment']);
-    // }
-
-    // public function deals()
-    // {
-    //     return $this->hasMany(Deal::class);
-    // }
+    
 }

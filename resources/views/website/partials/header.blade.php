@@ -123,7 +123,7 @@
 
 									@foreach ($cats as $category)
 										<li>
-											<a href="home_watch.html">
+											<a href="{{ url('category/' .  $category->id) }}">
 												<span class="item_image">
 													<img src="{{asset($category->photo)}}" alt="image_not_found">
 												</span>
