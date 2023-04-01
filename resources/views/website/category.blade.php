@@ -32,13 +32,13 @@
             </div>
 
             <div class="row justify-content-center">
-                @foreach($category->products as $product)
+                @foreach($products as $product)
 
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <div class="sports_product_item">
                             <div class="item_image" data-bg-color="#f5f5f5">
 
-                                <img src="{{$product->photos()}}" />
+                                <img src="{{asset($product->photos()->first()->path)}}" />
 
                                 <ul class="product_action_btns ul_li_center clearfix">
                                     <li>
@@ -66,6 +66,7 @@
                         </div>
                     </div>
                     @endforeach
+                    {{$products->links()}}
             </div>
 
             <div class="row">
