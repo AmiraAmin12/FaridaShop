@@ -13,7 +13,8 @@ class CategoryController extends Controller
     public function show($id){ 
         $category  =category::find($id);
         $products = Product::where('category_id',$id)->paginate(10);
-       return view('website.category',compact('category','products'));
+        $start=($products->currentPage()-1)* $products->perPage()+1;
+       return view('website.category',compact('category','products','start'));
     }
     
     
