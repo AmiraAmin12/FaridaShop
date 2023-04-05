@@ -44,12 +44,8 @@
                         <div class="sports_product_item">
                             <div class="item_image" data-bg-color="#f5f5f5">
 
-                                <img src="{{
-                                    $product->photos()->first()?
-                                    asset( $product->photos()->first()->path)
-                                    :
-                                    asset( 'uploads/products/img.avif')
-                                }}" />
+                            <img src="{{ $product->featured_photo }}" />
+
 
                                 <ul class="product_action_btns ul_li_center clearfix">
                                     <li>

@@ -19,25 +19,17 @@ class Product extends Model
         'category_id',
     ];
 
-    // protected $appends = ['featured_photo'];
+    //chatgpt
+ protected $appends = ['featured_photo'];
 
-    // protected function featuredPhoto(): Attribute
-    // {
-    //     return new Attribute(
-    //         get: function () {
-    //             return $this->photos()->first()
-    //                 ? asset($this->photos()->first()->path)
-    //                 : asset('uploads/products/image-placeholder-base.png');
-    //         },
-    //     );
-    // }
+public function getFeaturedPhotoAttribute()
+{
+    return $this->photos()->first()
+        ? asset($this->photos()->first()->path)
+        : asset('uploads/products/img.avif');
+}
+   
 
-    // protected function price(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn ($value) => $value,
-    //     );
-    // }
 
     // Events
     protected static function booted()

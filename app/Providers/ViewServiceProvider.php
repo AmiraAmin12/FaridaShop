@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Composers\PopularProductComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\View\Composers\WebsiteHeaderComposer;
@@ -26,8 +27,14 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-           ['website.partials.header','website.partials.slider'], WebsiteHeaderComposer::class);
+           ['website.partials.header',
+           'website.partials.slider'],
+            WebsiteHeaderComposer::class);
 
+            View::composer(
+                ['website.partials.popular'],
+                 PopularProductComposer::class);
+     
      
     }
 }
