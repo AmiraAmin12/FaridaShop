@@ -77,16 +77,16 @@
 					<div class="supermarket_header_btns clearfix">
 						<ul class="action_btns_group ul_li_right clearfix">
 							<li>
-								<button type="button">
-									<span>Need</span>
-									<strong>Help?</strong>
-								</button>
+								<a href="{{url('register')}}" class="btn btn-secondary">
+									New Account
+								</a>
 							</li>
 							<li>
-								<button type="button">
-									<span>Your</span>
-									<strong>Account</strong>
-								</button>
+								
+								<a href="{{url('login')}}" class="btn btn-secondary">
+									SignIn
+								</a>
+							
 							</li>
 							<li>
 								<button type="button" class="cart_btn">
@@ -95,10 +95,7 @@
 								</button>
 							</li>
 						</ul>
-						<span class="alart_text float-right">
-							<small>£</small>
-							New here? Get your Coupons!
-						</span>
+						
 					</div>
 				</div>
 			</div>

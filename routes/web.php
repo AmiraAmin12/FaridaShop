@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\website\AuthController;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\HomepageController;
 use App\Http\Controllers\website\ProductController;
@@ -22,4 +23,11 @@ Route::get('/', HomepageController::class);
 // });
 Route::get('/category/{id}', [CategoryController::class, 'show']);
 Route::get('/product/{id}', [ProductController::class ,'show']);
+
+Route::get('/register', [AuthController::class ,'register']);
+Route::post('/register', [AuthController::class ,'postRegister']);
+
+Route::get('/login', [AuthController::class ,'login']);
+
+
 
