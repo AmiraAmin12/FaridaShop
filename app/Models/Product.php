@@ -30,6 +30,7 @@ public function getFeaturedPhotoAttribute()
 }
    
 
+   
 
     // Events
     protected static function booted()

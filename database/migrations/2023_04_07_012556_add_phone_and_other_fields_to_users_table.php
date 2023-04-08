@@ -14,8 +14,8 @@ class AddPhoneAndOtherFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->after('email');
-            $table->longText('address')->after('phone');
+            $table->string('phone')->after('email')->nullable();
+            $table->longText('address')->after('phone')->nullable();
             $table->tinyInteger('type')->after('id')->default(1);
 
            
