@@ -28,6 +28,8 @@ Route::get('/register', [AuthController::class ,'register']);
 Route::post('/register', [AuthController::class ,'postRegister']);
 
 Route::get('/login', [AuthController::class ,'login']);
+Route::post('/login', [AuthController::class ,'postLogin']);
 
+Route::get('/logout', [AuthController::class ,'logout']);
 
 
