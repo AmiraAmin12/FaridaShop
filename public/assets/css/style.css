@@ -3361,7 +3361,7 @@ button {
 .supermarket_header .action_btns_group > li:not(:last-child) {
   margin-right: 30px;
 }
-.supermarket_header .action_btns_group button {
+.supermarket_header .action_btns_group button , a{
   width: auto;
   height: auto;
   display: block;

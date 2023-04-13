@@ -30,7 +30,7 @@
     <div class="header_middle clearfix">
         <div class="container maxw_1460">
             <div class="row align-items-center justify-content-lg-between">
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <div class="brand_logo">
                         <a class="brand_link" href="{{url('/')}}">
                             <img src="{{asset('assets/images/logo/logo_18_1x.png')}}"
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <form action="#">
                         <div class="medical_search_bar">
                             <div class="form_item">
@@ -76,9 +76,10 @@
                     </form>
                 </div>
 
-                <div class="col-lg-3">
-                    <div class="supermarket_header_btns clearfix">
+                <div class="col-lg-4">
+                    <div class="supermarket_header_btns  align-items-center clearfix">
                         <ul class="action_btns_group ul_li_right clearfix">
+
                             @if(Auth::check())
                             <li>
                                 <a href="">
@@ -86,39 +87,46 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{url('profile')}}" class="btn btn-secondary">
-                                    profile
+                                <a href="{{url('profile')}}" class=" btn">
+                                    Profile
                                 </a>
                             </li>
                             <li>
-                                <a href="{{url('logout')}}" class="btn btn-secondary">
+                                <a href="{{url('logout')}}" class="btn btn-danger">
                                     Sign Out
                                 </a>
                             </li>
 
                             @else
                             <li>
-                                <a href="{{url('register')}}" class="btn btn-secondary">
+                                <a href="{{url('register')}}" class="btn btn-danger ">
                                     New Account
                                 </a>
                             </li>
                             <li>
 
-                                <a href="{{url('login')}}" class="btn btn-secondary">
+                                <a href="{{url('login')}}" class="btn btn-danger">
                                     SignIn
                                 </a>
 
                             </li>
                             @endif
-                            <li>
-                                <button type="button" class="cart_btn">
-                                    <i class="fal fa-shopping-bag"></i>
-                                    <span class="btn_badge">2</span>
-                                </button>
-                            </li>
+
                         </ul>
 
                     </div>
+
+                </div>
+
+                <div class="col-lg-1 ">
+
+                    <a href="{{url('cart')}}" class="cart_btn ">
+                        <i class="fal fa-shopping-bag"></i>
+                        <span class="btn_badge">2</span>
+                    </a >
+                       
+
+
                 </div>
             </div>
         </div>

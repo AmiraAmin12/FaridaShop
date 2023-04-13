@@ -1,43 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\website;
+namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
+
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 
 class AuthController extends Controller
 {
-    public function register(){
+    public function register()
+    {
         return view('website.auth.register');
     }
-    public function postRegister(Request $request){
-       $request->validate(
-        [
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required |confirmed',
-            'confirm_password'=>'required',
-        ]
-        );
-        // $newUser = User::create($request->all());
 
-        // if($newUser){
-        //     return redirect('login');
-        // }
+    public function postRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => [
+                'required',
+                'unique:users',
+            ],
+            'password' => 'required|confirmed',
+        ]);
 
-        $inputs = $request->all();
-        $inputs['password']= Hash::make( $inputs['password']);
-        $newUser= User::create($request);
+        $newUser = User::create($request->all());
+
         if($newUser){
             return redirect('login');
         }
     }
 
-        public  function login()
+
+
+    public function login()
     {
         return view('website.auth.login');
     }
@@ -70,7 +68,4 @@ class AuthController extends Controller
 
         return redirect('/');
     }
-
 }
-
-
