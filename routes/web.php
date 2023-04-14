@@ -33,3 +33,9 @@ Route::post('/login', [AuthController::class ,'postLogin']);
 Route::get('/logout', [AuthController::class ,'logout']);
 
 
+Route::get('/add-to-cart',function(){
+    return '<h1>done</h1>';
+
+});
+
+

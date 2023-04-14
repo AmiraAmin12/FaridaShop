@@ -108,7 +108,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="custom_btn bg_black text-uppercase" href="#!"><i
+                                <a id="cart-btn"  class="custom_btn bg_black text-uppercase" href="{{url('add-to-cart')}}"><i
                                         class="fal fa-shopping-bag mr-2"></i> Add To Cart</a>
                             </li>
                         </ul>

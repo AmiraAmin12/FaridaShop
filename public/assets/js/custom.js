@@ -1175,6 +1175,22 @@
   }
   // google map - end
   // --------------------------------------------------
+//add custom code for cart
+$('#cart-btn').click( function(e){
+  e.preventDefault();
+  $.ajax({
+    url:'/add-to-cart',
+    method:'GET',
+    success:function(data){
+      $toaster({priority:'success',
+      title:'title',
+      message:''
 
+      });
+    },
+    error:function(data){}
+  });
+
+  });
 
 })(jQuery);
