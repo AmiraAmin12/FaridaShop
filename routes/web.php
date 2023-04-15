@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\website\AuthController;
+use App\Http\Controllers\website\CartController;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\HomepageController;
 use App\Http\Controllers\website\ProductController;
@@ -33,9 +34,6 @@ Route::post('/login', [AuthController::class ,'postLogin']);
 Route::get('/logout', [AuthController::class ,'logout']);
 
 
-Route::get('/add-to-cart',function(){
-    return '<h1>done</h1>';
-
-})->middleware('web');
+Route::post('/add-to-cart',[CartController::class ,'addToCart']);
 
 
