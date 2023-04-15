@@ -122,7 +122,7 @@
 
                     <a href="{{ Auth::check()?url('cart') :url('login')}}" class="cart_btn ">
                         <i class="fal fa-shopping-bag"></i>
-                        <span class="btn_badge">2</span>
+                        <span class="btn_badge">0</span>
                     </a >
                        
 

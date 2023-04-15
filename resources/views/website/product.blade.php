@@ -13,13 +13,12 @@
                         <div class="tab-content zoom-gallery">
                             @foreach($product->photos as $photo)
                             <div id="tab_{{$loop->index}}" class="tab-pane {{$loop->first ?'active' :'fade'}}">
-                                <a class="popup_image zoom-image" data-image="{{asset($photo->path)}}"
-                                    href="{{asset($photo->path)}}">
+                                <a class="popup_image zoom-image" data-image="{{asset($photo->path)}}" href="{{asset($photo->path)}}">
                                     <img src="{{asset($photo->path)}}" alt="image_not_found">
                                 </a>
                             </div>
                             @endforeach
-                           
+
                         </div>
 
                         <ul class="nav ul_li clearfix" role="tablist">
@@ -30,7 +29,7 @@
                                 </a>
                             </li>
                             @endforeach
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -44,8 +43,7 @@
                             <div class="col-lg-5">
                                 <div class="item_brand d-flex align-items-center">
                                     <span class="brand_title">Brands:</span>
-                                    <span class="brand_image d-flex align-items-center justify-content-center"
-                                        data-bg-color="#f7f7f7">
+                                    <span class="brand_image d-flex align-items-center justify-content-center" data-bg-color="#f7f7f7">
                                         <img src="assets/images/product_brands/img_01.png" alt="image_not_found">
                                     </span>
                                 </div>
@@ -66,7 +64,7 @@
                             </div>
                         </div>
                         <p class="mb-0">
-						{{ Str::words($product->description,10)}}
+                            {{ Str::words($product->description,10)}}
                         </p>
                         <hr>
                         <div class="item_color_list mb_30 clearfix">
@@ -108,8 +106,9 @@
                                 </div>
                             </li>
                             <li>
-                                <a id="cart-btn"  class="custom_btn bg_black text-uppercase" href="{{url('add-to-cart')}}"><i
-                                        class="fal fa-shopping-bag mr-2"></i> Add To Cart</a>
+                                <a id="cart-btn" class="custom_btn bg_black text-uppercase" href=""><i class="fal fa-shopping-bag mr-2">
+                                    
+                                </i> Add To Cart</a>
                             </li>
                         </ul>
 
@@ -121,13 +120,13 @@
                         <hr>
 
                         <ul class="product_info ul_li_block clearfix">
-                            <li><strong>SKU:</strong> 
-                            {{$product->sku}}
-                        </li>
+                            <li><strong>SKU:</strong>
+                                {{$product->sku}}
+                            </li>
                             <li>
                                 <strong>Category</strong>
                                 <a href="{{url('category/' .$product->category->id)}}">
-                                {{$product->category->name}}</a> 
+                                    {{$product->category->name}}</a>
                             </li>
                         </ul>
                     </div>
@@ -142,7 +141,7 @@
                     <li>
                         <a data-toggle="tab" href="#reviews_tab">Reviews</a>
                     </li>
-                    
+
                 </ul>
 
                 <!-- Tab panes -->
@@ -187,7 +186,7 @@
 
             <hr class="mt-0 mb_100">
 
-@include('website.partials.popular')
+            @include('website.partials.popular')
         </div>
     </section>
     <!-- details_section - end
