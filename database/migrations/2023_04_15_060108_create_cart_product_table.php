@@ -18,6 +18,10 @@ class CreateCartProductTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('quantity');
             $table->timestamps();
+            $table->foreign('cart_id')->references('id')->on('carts');
+            $table->foreign('product_id')->references('id')->on('products');
+
+
         });
     }
 

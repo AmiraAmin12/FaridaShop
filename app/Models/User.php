@@ -64,13 +64,13 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
+    // public function orders()
+    // {
+    //     return $this->hasMany(Order::class);
+    // }
 
-    public function ratings()
-    {
-        return $this->belongsToMany(Product::class);
-    }
+    // public function ratings()
+    // {
+    //     return $this->belongsToMany(Product::class);
+    // }
 }

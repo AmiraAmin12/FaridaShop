@@ -29,6 +29,7 @@ class AuthController extends Controller
         $newUser = User::create($request->all());
 
         if($newUser){
+            
             return redirect('login');
         }
     }
