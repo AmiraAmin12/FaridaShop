@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+    ];
+    //relations
+    public function products(){
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -1176,21 +1176,27 @@
   // google map - end
   // --------------------------------------------------
 //add custom code for cart
-$('#cart-btn').click( function(e){
+$('#add-toqewruiop34-cart-form').submit(function(e){
   e.preventDefault();
+  console.log(new FormData(this));
+
   $.ajax({
+    
     url:'/add-to-cart',
-    method:'GET',
+    method:'POST',
+    data: new FormData(this),
     success:function(data){
-      $toaster({priority:'success',
-      title:'title',
-      message:''
-
+      let cartCount =$('.btn_bage').first().text();
+      cartCount++;
+      $('.btn_bage').text(cartCount);
+      $.toaster({
+        priority:'success',
+        message:data,
+        timeout:3000,
       });
-    },
-    error:function(data){}
-  });
 
+    },error:function(data){},
   });
+});
 
 })(jQuery);

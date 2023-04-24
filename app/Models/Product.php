@@ -51,6 +51,9 @@ public function getFeaturedPhotoAttribute()
     {
         return $this->hasMany(Photo::class);
     }
+    public function cart(){
+        return $this->belongsTo(Cart::class);
+    }
 
     
 }

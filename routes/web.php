@@ -34,6 +34,6 @@ Route::post('/login', [AuthController::class ,'postLogin']);
 Route::get('/logout', [AuthController::class ,'logout']);
 
 
-Route::post('/add-to-cart',[CartController::class ,'addToCart']);
+Route::get('/add-to-cart', [CartController::class, 'addToCart']);
 
 

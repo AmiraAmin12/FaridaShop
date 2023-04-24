@@ -1,40 +1,11 @@
 <header class="header_section supermarket_header bg-white clearfix">
-    <div class="header_top text-white clearfix">
-        <div class="container maxw_1460">
-            <div class="row align-items-center justify-content-lg-between">
-                <div class="col-lg-5">
-                    <p class="welcome_text mb-0">Welcome to Worldwide Online marketplace Store</p>
-                </div>
-
-                <div class="col-lg-7">
-                    <ul class="info_list ul_li_right clearfix">
-                        <li><a href="#!"><i class="fal fa-map-marker-alt"></i> Store Locator</a></li>
-                        <li><a href="#!"><i class="fal fa-truck"></i> Track Your Order</a></li>
-                        <li>
-                            <form action="#">
-                                <div class="currency_select option_select mb-0">
-                                    <select>
-                                        <option value="USD" selected>US Dollars</option>
-                                        <option value="EUR">Euro</option>
-                                        <option value="GBP">UK Pounds</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="header_middle clearfix">
         <div class="container maxw_1460">
             <div class="row align-items-center justify-content-lg-between">
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <div class="brand_logo">
-                        <a class="brand_link" href="{{url('/')}}">
-                            <img src="{{asset('assets/images/logo/logo_18_1x.png')}}"
-                                srcset="assets/images/logo/logo_18_2x.png 2x" alt="logo_not_found">
+                        <a class="brand_link" href="{{ url('/') }}">
+                            <img src="{{ asset('assets/images/logo/logo_18_1x.png') }}" alt="logo_not_found">
                         </a>
 
                         <ul class="mh_action_btns ul_li clearfix">
@@ -48,27 +19,37 @@
                             <li>
                                 <button type="button" class="cart_btn">
                                     <i class="fal fa-shopping-cart"></i>
-                                    <span class="btn_badge">2</span>
+                                    <span class="btn_badge">
+                                        {{ 2}}
+                                    </span>
                                 </button>
                             </li>
-                            <li><button type="button" class="mobile_menu_btn"><i class="far fa-bars"></i></button></li>
+                            <li><button type="button" class="mobile_menu_btn"><i class="far fa-bars"></i></button>
+                            </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-lg-5">
-                    <form action="#">
+                    <form action="{{ url('search-results') }}">
                         <div class="medical_search_bar">
                             <div class="form_item">
-                                <input type="search" name="search" placeholder="search here...">
+                                <input type="search" name="keyword" placeholder="search here..."
+                                    value="{{ $_GET['keyword'] ?? '' }}">
                             </div>
                             <div class="option_select mb-0">
-                                <select>
-                                    <option data-display="All Category">Select A Option</option>
-                                    <option value="1">Some option</option>
-                                    <option value="2">Another option</option>
-                                    <option value="3" disabled>A disabled option</option>
-                                    <option value="4">Potato</option>
+                                <select name="category_id">
+                                    <option data-display="All Category" value="">
+                                        Select A Option
+                                    </option>
+
+                                    @foreach ($cats as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ isset($_GET['category_id']) && $_GET['category_id'] == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+
                                 </select>
                             </div>
                             <button type="submit" class="submit_btn"><i class="fal fa-search"></i></button>
@@ -76,57 +57,56 @@
                     </form>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="supermarket_header_btns  align-items-center clearfix">
-                        <ul class="action_btns_group ul_li_right clearfix">
+                <div class="col-lg-3">
+                    <div class="supermarket_header_btns clearfix">
+                        <ul class="action_btns_group ul_li_right justify-content-center clearfix">
 
-                            @if(Auth::check())
-                            <li>
-                                <a href="">
-                                    Welcome Back,{{Auth::user()->name}}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{url('profile')}}" class=" btn">
-                                    Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{url('logout')}}" class="btn btn-danger">
-                                    Sign Out
-                                </a>
-                            </li>
-
+                            @if (Auth::check())
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button"
+                                        data-toggle="dropdown" aria-expanded="false">
+                                        Welcome back, {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ url('profile') }}" class="dropdown-item">
+                                            Profile
+                                        </a>
+                                        <a href="{{ url('logout') }}" class="dropdown-item">
+                                            Sign out
+                                        </a>
+                                    </div>
+                                </li>
                             @else
-                            <li>
-                                <a href="{{url('register')}}" class="btn btn-danger ">
-                                    New Account
-                                </a>
-                            </li>
-                            <li>
-
-                                <a href="{{url('login')}}" class="btn btn-danger">
-                                    SignIn
-                                </a>
-
-                            </li>
+                                <li>
+                                    <a href="{{ url('register') }}" class="btn btn-danger btn-sm">
+                                        New Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('login') }}" class="btn btn-danger btn-sm">
+                                        Sign in
+                                    </a>
+                                </li>
                             @endif
 
+
                         </ul>
-
                     </div>
-
                 </div>
 
-                <div class="col-lg-1 ">
-
-                    <a href="{{ Auth::check()?url('cart') :url('login')}}" class="cart_btn ">
-                        <i class="fal fa-shopping-bag"></i>
-                        <span class="btn_badge">0</span>
-                    </a >
-                       
-
-
+                <div class="col-lg-1">
+                    <div class="supermarket_header_btns clearfix">
+                        <ul class="action_btns_group ul_li_right clearfix">
+                            <li>
+                                <a href="{{ Auth::check() ? url('cart') : url('login') }}" class="cart_btn">
+                                    <i class="fal fa-shopping-bag"></i>
+                                    <span class="btn_badge">
+                                        {{ 2 }}
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -151,169 +131,20 @@
                                     <ul class="home_pages ul_li clearfix">
 
                                         @foreach ($cats as $category)
-                                        <li>
-                                            <a href="{{ url('category/' .  $category->id) }}">
-                                                <span class="item_image">
-                                                    <img src="{{asset($category->photo)}}" alt="image_not_found">
-                                                </span>
-                                                <span class="item_title">{{$category->name}}</span>
-                                            </a>
-                                        </li>
+                                            <li>
+                                                <a href="{{ url('/category/' . $category->id) }}">
+                                                    <span class="item_image">
+                                                        <img src="{{ asset($category->photo) }}"
+                                                            alt="{{ $category->name }}">
+                                                    </span>
+                                                    <span class="item_title">
+                                                        {{ $category->name }}
+                                                    </span>
+                                                </a>
+                                            </li>
                                         @endforeach
+
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="menu_item_has_child">
-                        <a href="#!">Shop</a>
-                        <div class="mega_menu">
-                            <div class="background" data-bg-color="#ffffff">
-                                <div class="container">
-                                    <div class="row mt__30">
-                                        <div class="col-lg-3">
-                                            <div class="page_links">
-                                                <h3 class="title_text">Carparts</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="carparts_shop.html">Shop Page</a></li>
-                                                    <li><a href="carparts_shop_grid.html">Shop Grid</a></li>
-                                                    <li><a href="carparts_shop_list.html">Shop List</a></li>
-                                                    <li><a href="carparts_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Classic Ecommerce</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="classic_ecommerce_shop.html">Shop Page</a></li>
-                                                    <li><a href="classic_ecommerce_shop_details.html">Shop Details</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Electronic</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="electronic_shop.html">Shop Page</a></li>
-                                                    <li><a href="electronic_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Fashion</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="fashion_shop.html">Shop Page</a></li>
-                                                    <li><a href="fashion_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div class="page_links">
-                                                <h3 class="title_text">Fashion Minimal</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
-                                                    <li><a href="fashion_minimal_shop_details.html">Shop Details</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Fashion Minimal</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
-                                                    <li><a href="fashion_minimal_shop_details.html">Shop Details</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Furniture</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="furniture_shop.html">Shop Page</a></li>
-                                                    <li><a href="furniture_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Gadget</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="gadget_shop.html">Shop Page</a></li>
-                                                    <li><a href="gadget_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div class="page_links">
-                                                <h3 class="title_text">Medical</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="medical_shop.html">Shop Page</a></li>
-                                                    <li><a href="medical_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Modern Minimal</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="modern_minimal_shop.html">Shop Page</a></li>
-                                                    <li><a href="modern_minimal_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Modern</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="modern_shop.html">Shop Page</a></li>
-                                                    <li><a href="modern_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Motorcycle</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="motorcycle_shop_grid.html">Shop Grid</a></li>
-                                                    <li><a href="motorcycle_shop_list.html">Shop List</a></li>
-                                                    <li><a href="motorcycle_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div class="page_links">
-                                                <h3 class="title_text">Simple Shop</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="simple_shop.html">Shop Page</a></li>
-                                                    <li><a href="simple_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Sports</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="sports_shop.html">Shop Page</a></li>
-                                                    <li><a href="sports_shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Lookbook</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="lookbook_creative_shop.html">Shop Page</a></li>
-                                                    <li><a href="lookbook_creative_shop_details.html">Shop Details</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="page_links">
-                                                <h3 class="title_text">Shop Other Pages</h3>
-                                                <ul class="ul_li_block">
-                                                    <li><a href="#!"><del>Shop Page</del></a></li>
-                                                    <li><a href="shop_details.html">Shop Details</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
